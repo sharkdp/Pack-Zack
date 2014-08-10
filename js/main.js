@@ -334,9 +334,26 @@ function button(tag) {
 }
 
 function saveItems() {
-    var items = $("input:checkbox:checked").map(function () {
+    // load old saved items
+    var items = localStorage.getItem("completedItems");
+    if (items === undefined) {
+        items = [];
+    }
+    else {
+        items = JSON.parse(items);
+    }
+
+    // add (newly) checked items
+    var checkedItems = $("input:checkbox:checked").map(function () {
         return $(this).attr("data-item");
     }).get();
+
+    // remove (newly?) unchecked items
+    var uncheckedItems = $("input:checkbox:not(:checked)").map(function () {
+        return $(this).attr("data-item");
+    }).get();
+    items = _.union(items, checkedItems);
+    items = _.difference(items, uncheckedItems);
     localStorage.setItem("completedItems", JSON.stringify(items));
 }
 
