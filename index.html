@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="David Peter">
+
+        <title>Pack-Zack!</title>
+
+        <!-- <link href='http://fonts.googleapis.com/css?family=Lato:400,900' rel='stylesheet' type='text/css'> -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/map-icons.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- <div class="jumbotron hidden-print"> -->
+        <!--     <div class="container"> -->
+        <!--         <h1>Pack-Zack! <small>Der <i>Tag</i>-basierte Packlisten-Manager.</small></h1> -->
+        <!--     </div> -->
+        <!-- </div> -->
+
+        <div class="container">
+            <div class="page-header hidden-print">
+                <h1>Pack-Zack! <small>Der <i>Tag</i>-basierte Packlisten-Manager.</small></h1>
+            </div>
+            <div class="panel panel-default hidden-print">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Anpassen</h3>
+                </div>
+                <div class="panel-body">
+                    <p>Wähle individuelle Tags...</p>
+                    <div id="tag-buttons"></div>
+                    <p>.. oder vorgefertige Listen:</p>
+                    <div id="list-buttons"></div>
+
+                    <div class="row" style="margin-top: 12px">
+                        <div class="col-sm-1">Fortschritt:</div>
+                        <div class="col-sm-5">
+                            <div class="progress" style="width: 100%">
+                                <div id="progress" class="progress-bar progress-bar-default progress-bar-striped"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button id="reset" type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Zurücksetzen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                  <div id="lists-left" class="col-sm-6"></div>
+                  <div id="lists-right" class="col-sm-6"></div>
+            </div>
+        </div>
+        <p class="text-center text-info hidden-print"><small>powered by <a href="http://lodash.com/">Lo-Dash</a>, <a href="http://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="https://github.com/janl/mustache.js">mustache.js</a>.</small><br />David Peter, 2014</p>
+
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/lodash.js"></script>
+        <script src="js/mustache.js"></script>
+        <script src="js/main.js"></script>
+        <script id="buttonTemplate" type="text/template">
+<div class="btn-toolbar">
+            {{#buttons}}
+            <div class="btn-group">
+                {{#notList}}
+                <button type="button" class="btn btn-{{style}} btn-sm" id="btn-{{function}}-{{name}}"><span class="glyphicon glyphicon-{{symbol}}"></span></button>
+                {{/notList}}
+                <button type="button" class="btn btn-default btn-sm {{active}}" id="btn-replace-{{name}}">{{#list}}<b>{{/list}} {{name}} {{#list}}</b>{{/list}}</button>
+            </div>
+            {{/buttons}}
+</div>
+        </script>
+        <script id="tagTemplate" type="text/template">
+            <div class="tag">
+                <div class="panel panel-{{color}}">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">
+                        {{#icon}}<i class="map-icon-{{icon}}"></i>{{/icon}}
+                        {{name}}
+                    </h3>
+                  </div>
+                  <div class="panel-body panel-items">
+                        {{#items}}
+                        <div class="checkbox">
+                          <label class="item">
+                            <input type="checkbox" data-item="{{.}}"> {{.}}
+                          </label>
+                        </div>
+                        {{/items}}
+                  </div>
+                </div>
+            </div>
+        </script>
+    </body>
+</html>

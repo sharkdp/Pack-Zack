@@ -1,0 +1,22 @@
+.item {
+    /* font-size: 15px; */
+}
+
+.done {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.panel-items {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#tag-buttons, #list-buttons {
+    /* padding-top: 7px; */
+    /* padding-bottom: 7px; */
+}
+
+div.btn-group {
+    margin-bottom: 10px;
+}
