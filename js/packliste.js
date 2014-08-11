@@ -78,6 +78,7 @@ var dbTags = [
       "Geldbeutel (Geld, Ausweis, VISA, KV-Karte)",
       "Handy",
       "Dokumente (Flug, Bahn, Hotel)",
+      "Kopfhörer",
       "Musik",
       "Foto",
       "Bücher, Kindle",
@@ -87,6 +88,7 @@ var dbTags = [
       "? Reisepass",
       "? Zusätzlicher Rucksack",
       "? Mehrfachsteckdose",
+      "? Kabel (USB, HDMI, LAN)",
       "? Adapter Ausland",
       "? Reiseführer",
       "? Regenschirm"
@@ -301,7 +303,7 @@ var dbTags = [
     "items": [
       "Poster / Vortrag",
       "Konferenz-Dokumente",
-      "Laptop",
+      "Laptop (Headset, Maus)",
       "Tablet + Ladegerät"
     ],
     "list": true
