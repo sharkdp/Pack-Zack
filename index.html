@@ -17,18 +17,12 @@
     </head>
 
     <body>
-        <!-- <div class="jumbotron hidden-print"> -->
-        <!--     <div class="container"> -->
-        <!--         <h1>Pack-Zack! <small>Der <i>Tag</i>-basierte Packlisten-Manager.</small></h1> -->
-        <!--     </div> -->
-        <!-- </div> -->
-
         <div class="container">
             <div class="page-header hidden-print">
                 <h1>Pack-Zack! <small>Der <i>Tag</i>-basierte Packlisten-Manager.</small></h1>
             </div>
             <div class="panel panel-default hidden-print">
-                <div class="panel-heading">
+                <div class="panel-heading" data-toggle="collapse" data-target="#collapse">
                     <h3 class="panel-title"><a href="#" data-toggle="collapse" data-target="#collapse">Anpassen</a></h3>
                 </div>
                 <div id="collapse" class="panel-collapse collapse in">
@@ -41,7 +35,7 @@
                         <div class="text-center" style="margin-bottom: -5px">
                             <div class="btn-group">
                                 <button id="collapse" type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapse"><span class="glyphicon glyphicon-chevron-up"></span> Einklappen</button>
-                                <button id="print" type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-print"></span> Drucken</button>
+                                <button id="print" type="button" class="btn btn-sm btn-default hidden-xs"><span class="glyphicon glyphicon-print"></span> Drucken</button>
                                 <button id="reset" type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Zurücksetzen</button>
                             </div>
                         </div>

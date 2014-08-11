@@ -4,17 +4,18 @@ var dbTags = [
     "icon": "laundry",
     "color": "success",
     "items": [
+      "Jacke",
       "Lange Hosen",
       "Pullis",
       "T-Shirts",
-      "Funktionsshirts / Sportkleidung",
       "Socken",
       "Shorts",
-      "Hausschuhe",
-      "Turnschuhe",
-      "Jacke",
+      "? Hausschuhe",
+      "? Funktionsshirts / Sportkleidung",
+      "? Turnschuhe",
       "? Jogginghose",
-      "? Regenjacke"
+      "? Regenjacke",
+      "? Hemd, Anzug, Jacket, Krawatte"
     ]
   },
   {
@@ -24,9 +25,9 @@ var dbTags = [
     "items": [
       "Kurze Hosen",
       "Flip-Flops",
-      "Sport-Hosen",
       "Sonnenbrille",
-      "Badehose"
+      "Badehose",
+      "? Sport-Hosen"
     ],
     "parents": ["Kleider"]
   },
@@ -38,6 +39,7 @@ var dbTags = [
       "Winterschuhe",
       "Handschuhe",
       "Mütze",
+      "Schal",
       "Sonnenbrille",
       "? Badehose"
     ],
@@ -48,25 +50,30 @@ var dbTags = [
     "icon": "beauty-salon",
     "color": "info",
     "items": [
-      "Handtuch",
       "Duschgel, Shampoo",
       "Zahnbürste",
       "Zahnpasta",
       "Rasierer + Kabel",
-      "Creme",
-      "Sonnencreme",
       "Deo",
       "Haargel",
-      "Kopfschmerztabletten",
-      "Kontaktlinsen",
       "Taschentücher",
-      "Wattestäbchen",
-      "? Ohropax"
+      "? Handtuch",
+      "? Kopfschmerztabletten",
+      "? Creme / Labello",
+      "? Sonnencreme",
+      "? Kontaktlinsen + Behälter + Flüssigkeit",
+      "? Brillenetui",
+      "? Nagelschere/-zwicker",
+      "? Rasierschaum",
+      "? Wattestäbchen",
+      "? Ohropax",
+      "? Blasenpflaster",
+      "? Desinfektionsmittel",
     ]
   },
   {
     "name": "Sonstiges",
-    "icon": "point-of-interest",
+    "icon": "travel-agency",
     "items": [
       "Geldbeutel (Geld, Ausweis, VISA, KV-Karte)",
       "Handy",
@@ -76,10 +83,13 @@ var dbTags = [
       "Bücher, Kindle",
       "Ladegeräte (Handy, Foto, Akku)",
       "Akkus, Batterien",
-      "Stift, Papier",
+      "Stifte + Papier",
       "? Reisepass",
       "? Zusätzlicher Rucksack",
-      "? Reiseführer"
+      "? Mehrfachsteckdose",
+      "? Adapter Ausland",
+      "? Reiseführer",
+      "? Regenschirm"
     ]
   },
   {
@@ -93,6 +103,50 @@ var dbTags = [
       "? Fußball, Volleyball, ..",
       "? Kite"
     ]
+  },
+  {
+    "name": "Lebensmittel",
+    "icon": "food",
+    "items": [
+      "Kartoffeln",
+      "Reis",
+      "Zwiebeln",
+      "Salz",
+      "Pfeffer",
+      "Öl/Essig",
+      "Gewürze",
+      "Knoblauch",
+      "Gemüsebrühe",
+      "Kaffee / Espresso",
+      "Schnapps",
+    ]
+  },
+  {
+    "name": "Ferienwohnung",
+    "icon": "roofing-contractor",
+    "items": [
+      "Tupperschüsseln",
+      "Küchenmesser",
+      "Korkenzieher",
+      "Putzlappen",
+      "Klopapier",
+      "Spülmittel",
+      "Geschirrtücher",
+      "Lappen",
+      "Teekanne + Sieb",
+    ],
+    "parents": ["Lebensmittel"]
+  },
+  {
+    "name": "Fotozubehör",
+    "icon": "point-of-interest",
+    "items": [
+      "Ladegerät",
+      "Stativ",
+      "SD-Karten",
+      "Fototasche",
+      "Reinigungsutensilien",
+    ],
   },
   {
     "name": "Outdoor",
@@ -130,11 +184,14 @@ var dbTags = [
     "items": [
       "Licht",
       "Sattel-Tasche",
-      "Werkzeug, Flickzeug",
+      "Werkzeug",
+      "Flickzeug",
       "Ersatz-Schlauch",
       "Schutzbleche",
       "Luftpumpe",
-      "Regenschutz (Hose, Schuhe)"
+      "Kettenöl",
+      "Regenschutz (Hose, Schuhe)",
+      "Einweghandschuhe"
     ],
     "parents": ["Fahrrad"]
   },
@@ -145,6 +202,7 @@ var dbTags = [
     "items": [
       "Wanderstöcke",
       "Wanderschuhe",
+      "Wanderhose",
       "Kappe / Mütze",
       "Flachmann"
     ],
@@ -155,26 +213,11 @@ var dbTags = [
     "icon": "location-arrow",
     "color": "danger",
     "items": [
-      "Schlafsack",
-      "Packsäcke / Tüten"
+      "(Hütten-)Schlafsack",
+      "Packsäcke / Tüten",
+      "? Waschgel"
     ],
     "parents": ["Outdoor"]
-  },
-  {
-    "name": "Sport",
-    "icon": "tennis",
-    "color": "warning",
-    "items": [
-      "Trinken",
-      "Geld",
-      "Entsprechende Bekleidung",
-      "? Essen (Müsli-Riegel, Obst)",
-      "? Kopfschmertablette",
-      "? Taschentücher",
-      "? Kontaktlinsen",
-      "? Mitgliedskarte etc.",
-      "? Duschen: Handtuch, Duschgel, frische Sachen"
-    ]
   },
   {
     "name": "Camping",
@@ -184,7 +227,30 @@ var dbTags = [
       "Zelt",
       "Isomatte",
       "Schlafsack",
-      "Campingstuhl"
+      "Campingstuhl",
+      "? Mülltüten",
+      "? Panzertape",
+      "? Dosen-/ Flaschenöffner",
+      "? Werkzeug",
+      "? Geschirrtücher",
+      "? Campingkocher",
+      "? Geschirr + Besteck"
+    ]
+  },
+  {
+    "name": "Sport",
+    "icon": "tennis",
+    "color": "warning",
+    "items": [
+      "Sportkleidung",
+      "Trinken",
+      "Handy + Geld",
+      "? Essen (Müsli-Riegel, Obst, ..)",
+      "? Duschen: Handtuch, Duschgel, frische Sachen",
+      "? Kontaktlinsen / alte Brille",
+      "? Mitgliedskarte etc.",
+      "? Taschentücher",
+      "? Kopfschmerztablette",
     ]
   },
   {
@@ -199,8 +265,11 @@ var dbTags = [
   },
   {
     "name": "Skiurlaub",
+    "color": "danger",
     "icon": "skiing",
     "items": [
+      "Skihose",
+      "Skisocken",
       "Skistöcke",
       "Helm",
       "Ski",
@@ -212,17 +281,17 @@ var dbTags = [
   },
   {
     "name": "Fahrradurlaub",
-    "parents": ["Sommerurlaub", "Fahrrad+"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad+"],
     "list": true
   },
   {
     "name": "Wanderurlaub",
-    "parents": ["Sommerurlaub", "Wandern", "Mehrtages-Tour"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern", "Mehrtages-Tour"],
     "list": true
   },
   {
     "name": "Festival",
-    "parents": ["Sommerurlaub", "Camping"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Camping"],
     "list": true
   },
   {
@@ -250,9 +319,8 @@ var dbTags = [
       "Cachebeschreibungen auf Garmin / c:geo",
       "Stifte + Papier",
       "Handy",
-      "feste Schuhe",
       "Plastiktüten / Beutel",
-      "? Kamera",
+      "? Foto",
       "? Kurzes Seil + Karabiner + Bandschlinge",
       "? Handschuhe",
       "? Fernglas",
@@ -271,8 +339,6 @@ var dbTags = [
     "items": [
         "Hallenschuhe",
         "Schläger",
-        "Kontaktlinsen / alte Brille",
-        "? Schweißband"
     ],
     "parents": ["Sport"],
     "list": true
