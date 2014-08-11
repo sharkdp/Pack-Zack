@@ -28,23 +28,25 @@
             </div>
             <div class="panel panel-default hidden-print">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Anpassen</h3>
+                    <h3 class="panel-title"><a href="#" data-toggle="collapse" data-target="#collapse">Anpassen</a></h3>
                 </div>
-                <div class="panel-body">
-                    <p>Wähle individuelle Tags...</p>
-                    <div id="tag-buttons"></div>
-                    <p>.. oder vorgefertige Listen:</p>
-                    <div id="list-buttons"></div>
+                <div id="collapse" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <p>Wähle individuelle Tags...</p>
+                        <div id="tag-buttons"></div>
+                        <p>.. oder vorgefertige Listen:</p>
+                        <div id="list-buttons"></div>
 
-                    <div class="row" style="margin-top: 12px">
-                        <div class="col-sm-1">Fortschritt:</div>
-                        <div class="col-sm-5">
-                            <div class="progress" style="width: 100%">
-                                <div id="progress" class="progress-bar progress-bar-default progress-bar-striped"></div>
+                        <div class="row" style="margin-top: 12px">
+                            <div class="col-sm-1">Fortschritt:</div>
+                            <div class="col-sm-5">
+                                <div class="progress" style="width: 100%">
+                                    <div id="progress" class="progress-bar progress-bar-default progress-bar-striped"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 text-right">
-                            <button id="reset" type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Zurücksetzen</button>
+                            <div class="col-sm-6 text-right">
+                                <button id="reset" type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Zurücksetzen</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,7 +57,7 @@
                   <div id="lists-right" class="col-sm-6"></div>
             </div>
         </div>
-        <p class="text-center hidden-print"><small>powered by <a href="http://lodash.com/">Lo-Dash</a>, <a href="http://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a> and <a href="https://github.com/janl/mustache.js">mustache.js</a>.</small><br />David Peter, 2014</p>
+        <p class="text-center hidden-print"><small>powered by <a href="http://lodash.com/">Lo-Dash</a>, <a href="http://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://github.com/janl/mustache.js">mustache.js</a> and <a href="http://json.org/">JSON</a>.</small><br />David Peter, 2014</p>
 
         <script src="js/jquery-2.1.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

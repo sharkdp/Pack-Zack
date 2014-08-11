@@ -2,300 +2,9 @@
 /*global $*/
 /*global _*/
 /*global Mustache*/
+/*global dbTags*/
 
-var dbTags = [
-  {
-    "name": "Kleider",
-    "icon": "laundry",
-    "color": "success",
-    "items": [
-      "Lange Hosen",
-      "Pullis",
-      "T-Shirts",
-      "Funktionsshirts / Sportkleidung",
-      "Socken",
-      "Shorts",
-      "Hausschuhe",
-      "Turnschuhe",
-      "Jogginghose",
-      "Badehose",
-      "Jacke",
-      "Regenjacke"
-    ]
-  },
-  {
-    "name": "Sommer",
-    "icon": "diving",
-    "color": "success",
-    "items": [
-      "Kurze Hosen",
-      "Flip-Flops",
-      "Sport-Hosen",
-      "Sonnenbrille"
-    ],
-    "parents": ["Kleider"]
-  },
-  {
-    "name": "Winter",
-    "icon": "snow",
-    "color": "success",
-    "items": [
-      "Winterschuhe",
-      "Handschuhe",
-      "Mütze",
-      "Sonnenbrille"
-    ],
-    "parents": ["Kleider"]
-  },
-  {
-    "name": "Hygiene",
-    "icon": "beauty-salon",
-    "color": "info",
-    "items": [
-      "Handtuch",
-      "Duschgel, Shampoo",
-      "Zahnbürste",
-      "Zahnpasta",
-      "Rasierer",
-      "Creme",
-      "Sonnencreme",
-      "Deo",
-      "Haargel",
-      "Kopfschmerztabletten",
-      "Kontaktlinsen",
-      "Taschentücher",
-      "Ohropax"
-    ]
-  },
-  {
-    "name": "Sonstiges",
-    "icon": "point-of-interest",
-    "items": [
-      "Geldbeutel (Perso, VISA, Geld, KV-Karte)",
-      "Handy",
-      "Reisepass",
-      "Dokumente (Flug, Bahn, Hotel)",
-      "Musik",
-      "Foto",
-      "Bücher, Kindle",
-      "Ladegeräte (Handy, Foto, Akku)",
-      "Akkus, Batterien",
-      "Stift, Papier",
-      "Rucksack",
-      "Reiseführer"
-    ]
-  },
-  {
-    "name": "Spiele",
-    "icon": "casino",
-    "items": [
-      "Spielkarten",
-      "Brettspiele",
-      "Backgammon",
-      "Frisbee",
-      "Fußball, Volleyball, ..",
-      "Drachen"
-    ]
-  },
-  {
-    "name": "Outdoor",
-    "icon": "pet-store",
-    "color": "danger",
-    "items": [
-      "GPS + Halter + Ersatzakkus",
-      "Karten und Tracks für GPS",
-      "Geocaches und POI",
-      "? Taschenmesser",
-      "? Taschenlampe"
-    ]
-  },
-  {
-    "name": "Fahrrad",
-    "icon": "bicycling",
-    "color": "danger",
-    "items": [
-      "Helm",
-      "Schloss",
-      "Fahrrad-Hosen",
-      "Fahrrad-Trikots",
-      "Fahrrad-Jacke / Regenjacke",
-      "Fahrrad-Handschuhe",
-      "Fahrrad-Schuhe (+andere?)",
-      "Trinkflasche",
-    ],
-    "parents": ["Outdoor"]
-  },
-  {
-    "name": "Fahrrad+",
-    "icon": "bicycling",
-    "color": "danger",
-    "items": [
-      "Licht",
-      "Sattel-Tasche",
-      "Werkzeug, Flickzeug",
-      "Ersatz-Schlauch",
-      "Schutzbleche",
-      "Luftpumpe",
-      "Regenschutz (Hose, Schuhe)"
-    ],
-    "parents": ["Fahrrad"]
-  },
-  {
-    "name": "Wandern",
-    "icon": "trail-walking",
-    "color": "danger",
-    "items": [
-      "Wanderstöcke",
-      "Wanderschuhe",
-      "Kappe / Mütze",
-      "Flachmann"
-    ],
-    "parents": ["Outdoor"]
-  },
-  {
-    "name": "Mehrtages-Tour",
-    "icon": "location-arrow",
-    "color": "danger",
-    "items": [
-      "Schlafsack",
-      "Packsäcke / Tüten"
-    ],
-    "parents": ["Outdoor"]
-  },
-  {
-    "name": "Sport",
-    "icon": "tennis",
-    "color": "danger",
-    "items": [
-      "Trinken",
-      "Geld",
-      "Entsprechende Bekleidung",
-      "? Essen (Müsli-Riegel, Obst)",
-      "? Kopfschmertablette",
-      "? Taschentücher",
-      "? Kontaktlinsen",
-      "? Mitgliedskarte etc.",
-      "? Duschen: Handtuch, Duschgel, frische Sachen"
-    ]
-  },
-  {
-    "name": "Allgemein",
-    "parents": ["Kleider", "Hygiene", "Sonstiges"],
-    "list": true
-  },
-  {
-    "name": "Skifahren",
-    "icon": "skiing",
-    "color": "danger",
-    "items": [
-      "Skistöcke",
-      "Helm",
-      "Ski",
-      "Ski-Handschuhe",
-      "Ski-Brille"
-    ],
-    "parents": ["Winter", "Hygiene", "Sonstiges", "Spiele", "Outdoor"],
-    "list": true
-  },
-  {
-    "name": "Camping",
-    "icon": "campground",
-    "color": "danger",
-    "items": [
-      "Zelt",
-      "Isomatte",
-      "Schlafsack",
-      "Campingstuhl"
-    ]
-  },
-  {
-    "name": "Fahrradurlaub",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad+", "Mehrtages-Tour"],
-    "list": true
-  },
-  {
-    "name": "Wanderurlaub",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern", "Mehrtages-Tour"],
-    "list": true
-  },
-  {
-    "name": "Sommerurlaub",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Spiele"],
-    "list": true
-  },
-  {
-    "name": "Festival",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Spiele", "Camping"],
-    "list": true
-  },
-  {
-    "name": "Konferenz",
-    "icon": "school",
-    "parents": ["Sommer", "Hygiene", "Sonstiges"],
-    "items": [
-      "Poster / Vortrag",
-      "Konferenz-Dokumente",
-      "Laptop",
-      "Tablet + Ladegerät"
-    ],
-    "list": true
-  },
-  {
-    "name": "Fahrradtour",
-    "color": "danger",
-    "parents": ["Sport", "Fahrrad"],
-    list: true
-  },
-  {
-    "name": "Geocaching",
-    "icon": "compass",
-    "color": "danger",
-    "items": [
-      "Cachebeschreibungen auf Garmin / c:geo",
-      "Stifte + Papier",
-      "Handy",
-      "feste Schuhe",
-      "Plastiktüten / Beutel",
-      "? Kamera",
-      "? Kurzes Seil + Karabiner + Bandschlinge",
-      "? Handschuhe",
-      "? Fernglas",
-      "? Draht / Kabelbinder",
-      "? Regenjacke",
-      "? Magnet",
-      "? Laserpointer"
-    ],
-    "parents": ["Sport", "Outdoor"],
-    list: true
-  },
-  {
-    "name": "Squash",
-    "icon": "tennis",
-    "color": "danger",
-    "items": [
-        "Hallenschuhe",
-        "Schläger",
-        "Kontaktlinsen / alte Brille",
-        "? Schweißband"
-    ],
-    "parents": ["Sport"],
-    list: true
-  },
-  {
-    "name": "Klettern",
-    "icon": "climbing",
-    "color": "danger",
-    "items": [
-        "Kletterschuhe",
-        "Klettergurt",
-        "Karabiner",
-        "Seil",
-        "Flip-Flops"
-    ],
-    "parents": ["Sport"],
-    list: true
-  }
-];
+var tagTemplate, buttonTemplate, tags = [];
 
 function Tag(name) {
     this.name = name;
@@ -333,7 +42,6 @@ function findTag(name) {
 }
 
 // Parse JSON into Tag objects
-var tags = [];
 _(dbTags).each(function(jsonTag) {
     var tag = new Tag(jsonTag.name);
     if (_.has(jsonTag, "icon")) {
@@ -356,8 +64,6 @@ _(dbTags).each(function(jsonTag) {
     }
     tags.push(tag);
 });
-
-var tagTemplate, buttonTemplate;
 
 function setActiveTags(atags) {
     var tagNames = _.pluck(atags, "name");
@@ -415,6 +121,19 @@ function saveItems() {
     localStorage.setItem("completedItems", JSON.stringify(items));
 }
 
+function progress() {
+    var checked = $("input:checkbox:checked").length;
+    var all = $("input:checkbox").length;
+    var percentage;
+    if (all === 0) {
+        percentage = 0;
+    }
+    else {
+        percentage = 100 * checked / all;
+    }
+    $("#progress").css("width", percentage.toString() + "%");
+}
+
 function loadItems() {
     var items = localStorage.getItem("completedItems");
     if (items === undefined) {
@@ -430,19 +149,6 @@ function loadItems() {
     });
 
     progress();
-}
-
-function progress() {
-    var checked = $("input:checkbox:checked").length;
-    var all = $("input:checkbox").length;
-    var percentage;
-    if (all === 0) {
-        percentage = 0;
-    }
-    else {
-        percentage = 100 * checked / all;
-    }
-    $("#progress").css("width", percentage.toString() + "%");
 }
 
 function render() {
