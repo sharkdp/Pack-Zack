@@ -12,10 +12,9 @@ var dbTags = [
       "Shorts",
       "Hausschuhe",
       "Turnschuhe",
-      "Jogginghose",
-      "Badehose",
       "Jacke",
-      "Regenjacke"
+      "? Jogginghose",
+      "? Regenjacke"
     ]
   },
   {
@@ -26,7 +25,8 @@ var dbTags = [
       "Kurze Hosen",
       "Flip-Flops",
       "Sport-Hosen",
-      "Sonnenbrille"
+      "Sonnenbrille",
+      "Badehose"
     ],
     "parents": ["Kleider"]
   },
@@ -38,7 +38,8 @@ var dbTags = [
       "Winterschuhe",
       "Handschuhe",
       "Mütze",
-      "Sonnenbrille"
+      "Sonnenbrille",
+      "? Badehose"
     ],
     "parents": ["Kleider"]
   },
@@ -69,7 +70,6 @@ var dbTags = [
     "items": [
       "Geldbeutel (Geld, Ausweis, VISA, KV-Karte)",
       "Handy",
-      "Reisepass",
       "Dokumente (Flug, Bahn, Hotel)",
       "Musik",
       "Foto",
@@ -77,8 +77,9 @@ var dbTags = [
       "Ladegeräte (Handy, Foto, Akku)",
       "Akkus, Batterien",
       "Stift, Papier",
-      "Rucksack",
-      "Reiseführer"
+      "? Reisepass",
+      "? Zusätzlicher Rucksack",
+      "? Reiseführer"
     ]
   },
   {
@@ -88,9 +89,9 @@ var dbTags = [
       "Spielkarten",
       "Brettspiele",
       "Backgammon",
-      "Frisbee",
-      "Fußball, Volleyball, ..",
-      "Drachen"
+      "? Frisbee",
+      "? Fußball, Volleyball, ..",
+      "? Kite"
     ]
   },
   {
@@ -162,7 +163,7 @@ var dbTags = [
   {
     "name": "Sport",
     "icon": "tennis",
-    "color": "danger",
+    "color": "warning",
     "items": [
       "Trinken",
       "Geld",
@@ -173,6 +174,17 @@ var dbTags = [
       "? Kontaktlinsen",
       "? Mitgliedskarte etc.",
       "? Duschen: Handtuch, Duschgel, frische Sachen"
+    ]
+  },
+  {
+    "name": "Camping",
+    "icon": "campground",
+    "color": "danger",
+    "items": [
+      "Zelt",
+      "Isomatte",
+      "Schlafsack",
+      "Campingstuhl"
     ]
   },
   {
@@ -188,7 +200,6 @@ var dbTags = [
   {
     "name": "Skiurlaub",
     "icon": "skiing",
-    "color": "danger",
     "items": [
       "Skistöcke",
       "Helm",
@@ -198,17 +209,6 @@ var dbTags = [
     ],
     "parents": ["Winter", "Hygiene", "Sonstiges", "Outdoor"],
     "list": true
-  },
-  {
-    "name": "Camping",
-    "icon": "campground",
-    "color": "danger",
-    "items": [
-      "Zelt",
-      "Isomatte",
-      "Schlafsack",
-      "Campingstuhl"
-    ]
   },
   {
     "name": "Fahrradurlaub",
@@ -239,7 +239,6 @@ var dbTags = [
   },
   {
     "name": "Fahrradtour",
-    "color": "danger",
     "parents": ["Sport", "Fahrrad"],
     "list": true
   },
@@ -268,7 +267,7 @@ var dbTags = [
   {
     "name": "Squash",
     "icon": "tennis",
-    "color": "danger",
+    "color": "warning",
     "items": [
         "Hallenschuhe",
         "Schläger",
@@ -281,7 +280,7 @@ var dbTags = [
   {
     "name": "Klettern",
     "icon": "climbing",
-    "color": "danger",
+    "color": "warning",
     "items": [
         "Kletterschuhe",
         "Klettergurt",

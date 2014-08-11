@@ -37,15 +37,10 @@
                         <div id="tag-buttons"></div>
                         <p>.. oder vorgefertige Listen:</p>
                         <div id="list-buttons"></div>
-
-                        <div class="row" style="margin-top: 12px">
-                            <div class="col-sm-2">Fortschritt:</div>
-                            <div class="col-sm-4">
-                                <div class="progress" style="width: 100%">
-                                    <div id="progress" class="progress-bar progress-bar-default progress-bar-striped"></div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6 text-right">
+                        <hr />
+                        <div class="text-center" style="margin-bottom: -5px">
+                            <div class="btn-group">
+                                <button id="collapse" type="button" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#collapse"><span class="glyphicon glyphicon-chevron-up"></span> Einklappen</button>
                                 <button id="print" type="button" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-print"></span> Drucken</button>
                                 <button id="reset" type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span> Zurücksetzen</button>
                             </div>
@@ -53,10 +48,12 @@
                     </div>
                 </div>
             </div>
-            <hr />
+            <div class="progress" style="width: 100%">
+                <div id="progress" class="progress-bar progress-bar-default progress-bar-striped"></div>
+            </div>
             <div class="row">
-                  <div id="lists-left" class="col-sm-6"></div>
-                  <div id="lists-right" class="col-sm-6"></div>
+                <div id="lists-left" class="col-sm-6"></div>
+                <div id="lists-right" class="col-sm-6"></div>
             </div>
         </div>
         <p class="text-center hidden-print"><small>powered by <a href="http://lodash.com/">Lo-Dash</a>, <a href="http://jquery.com/">jQuery</a>, <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://github.com/janl/mustache.js">mustache.js</a> and <a href="http://json.org/">JSON</a>.</small><br />David Peter, 2014</p>
@@ -91,8 +88,8 @@
                   <div class="panel-body panel-items">
                         {{#itemsWithIds}}
                         <div class="checkbox checkbox-{{color}}">
-                            <input type="checkbox" id="checkbox-{{tagId}}-{{id}}" data-item="{{.}}">
-                            <label class="item" for="checkbox-{{tagId}}-{{id}}">{{name}}</label>
+                            <input type="checkbox" id="checkbox-{{tagId}}-{{id}}" data-item="{{name}}">
+                            <label class="item" for="checkbox-{{tagId}}-{{id}}">{{{html}}}</label>
                         </div>
                         {{/itemsWithIds}}
                   </div>

@@ -36,7 +36,13 @@ Tag.prototype.render = function() {
 };
 
 Tag.prototype.itemsWithIds = function() {
-    return _.map(this.items, function(item, id) { return {id: id, name: item}; });
+    return _.map(this.items, function(item, id) {
+        var html = item;
+        if  (item.substr(0, 2) === "? ") {
+            html = '<span style="color: #888;">' + _.drop(item, 2).join("") + '</span> <span style="color: #ccc" class="glyphicon glyphicon-question-sign"></span>';
+        }
+        return {id: id, name: item, html: html};
+    });
 }
 
 function findTag(name) {
@@ -94,6 +100,7 @@ function button(tag) {
     var active = _.contains(getActiveTags(), tag); // TODO: inefficient
     return { name: tag.name,
         style: active ? 'danger' : 'primary',
+        color: tag.color,
         function: active ? 'remove' : 'add',
         symbol: active ? 'minus' : 'plus',
         notList: !tag.list,
@@ -150,7 +157,7 @@ function loadItems() {
         $(":checkbox[data-item='" + item + "']").each(function () {
             $(this)
                 .prop("checked", true)
-                .parent().addClass("done");
+                .parent().find("label").addClass("done");
         });
     });
 

@@ -48,7 +48,7 @@ div.btn-group {
 }
 
 @media print {
-    body { font-size: 10pt; }
+    body { font-size: 9pt; }
     .panel { border: none; }
     hr { display: none; }
 }
