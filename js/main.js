@@ -4,7 +4,7 @@
 /*global Mustache*/
 /*global dbTags*/
 
-var tagTemplate, buttonTemplate, tags = [];
+var tagTemplate, buttonTemplate, tags = [], tagCnt = 1;
 
 function Tag(name) {
     this.name = name;
@@ -13,6 +13,8 @@ function Tag(name) {
     this.list = false;
     this.items = [];
     this.parents = [];
+    this.tagId = tagCnt;
+    tagCnt += 1;
 }
 
 Tag.prototype.tagAndParents = function() {
@@ -32,6 +34,10 @@ Tag.prototype.render = function() {
     }
     return Mustache.render(tagTemplate, this);
 };
+
+Tag.prototype.itemsWithIds = function() {
+    return _.map(this.items, function(item, id) { return {id: id, name: item}; });
+}
 
 function findTag(name) {
     var tag = _.find(tags, function(tag) { return tag.name === name; });
@@ -201,7 +207,7 @@ function render() {
     $("#lists-right").html(_.last(lists, n_right).join(""));
 
     $("input").change(function () {
-        $(this).parent().toggleClass("done");
+        $(this).parent().find("label").toggleClass("done");
         saveItems();
         progress();
     });
@@ -217,11 +223,15 @@ $(document).ready(function() {
     tagTemplate = $("#tagTemplate").html();
     Mustache.parse(tagTemplate);
 
-    // reset button
+    // buttons
     $("#reset").click(function () {
         localStorage.setItem("activeTags", "[]");
         localStorage.setItem("completedItems", "[]");
         render();
+    });
+
+    $("#print").click(function () {
+        window.print();
     });
 
     // Render the initial list
