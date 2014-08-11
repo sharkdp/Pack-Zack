@@ -102,11 +102,11 @@ var dbTags = [
     "icon": "pet-store",
     "color": "danger",
     "items": [
-      "GPS + Halter",
+      "GPS + Halter + Ersatzakkus",
       "Karten und Tracks für GPS",
       "Geocaches und POI",
-      "Taschenmesser",
-      "Taschenlampe"
+      "? Taschenmesser",
+      "? Taschenlampe"
     ]
   },
   {
@@ -114,21 +114,31 @@ var dbTags = [
     "icon": "bicycling",
     "color": "danger",
     "items": [
-      "Fahrrad",
       "Helm",
       "Schloss",
       "Fahrrad-Hosen",
       "Fahrrad-Trikots",
       "Fahrrad-Jacke / Regenjacke",
       "Fahrrad-Handschuhe",
-      "Fahrrad-Schuhe",
+      "Fahrrad-Schuhe (+andere?)",
       "Trinkflasche",
-      "Sattel-Tasche",
-      "Reperatur-Set",
-      "Ersatz-Schlauch",
-      "Schutzbleche"
     ],
     "parents": ["Outdoor"]
+  },
+  {
+    "name": "Fahrrad+",
+    "icon": "bicycling",
+    "color": "danger",
+    "items": [
+      "Licht",
+      "Sattel-Tasche",
+      "Werkzeug, Flickzeug",
+      "Ersatz-Schlauch",
+      "Schutzbleche",
+      "Luftpumpe",
+      "Regenschutz (Hose, Schuhe)"
+    ],
+    "parents": ["Fahrrad"]
   },
   {
     "name": "Wandern",
@@ -141,6 +151,32 @@ var dbTags = [
       "Flachmann"
     ],
     "parents": ["Outdoor"]
+  },
+  {
+    "name": "Mehrtages-Tour",
+    "icon": "location-arrow",
+    "color": "danger",
+    "items": [
+      "Schlafsack",
+      "Packsäcke / Tüten"
+    ],
+    "parents": ["Outdoor"]
+  },
+  {
+    "name": "Sport",
+    "icon": "tennis",
+    "color": "danger",
+    "items": [
+      "Trinken",
+      "Geld",
+      "Entsprechende Bekleidung",
+      "? Essen (Müsli-Riegel, Obst)",
+      "? Kopfschmertablette",
+      "? Taschentücher",
+      "? Kontaktlinsen",
+      "? Mitgliedskarte etc.",
+      "? Duschen: Handtuch, Duschgel, frische Sachen"
+    ]
   },
   {
     "name": "Allgemein",
@@ -173,13 +209,13 @@ var dbTags = [
     ]
   },
   {
-    "name": "Fahrradtour",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad"],
+    "name": "Fahrradurlaub",
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad+", "Mehrtages-Tour"],
     "list": true
   },
   {
-    "name": "Wandertour",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern"],
+    "name": "Wanderurlaub",
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern", "Mehrtages-Tour"],
     "list": true
   },
   {
@@ -195,15 +231,20 @@ var dbTags = [
   {
     "name": "Konferenz",
     "icon": "school",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Spiele"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges"],
     "items": [
       "Poster / Vortrag",
       "Konferenz-Dokumente",
       "Laptop",
-      "Tablet + Ladegerät",
-      "Tablet",
+      "Tablet + Ladegerät"
     ],
     "list": true
+  },
+  {
+    "name": "Fahrradtour",
+    "color": "danger",
+    "parents": ["Sport", "Fahrrad"],
+    list: true
   },
   {
     "name": "Geocaching",
@@ -211,30 +252,47 @@ var dbTags = [
     "color": "danger",
     "items": [
       "Cachebeschreibungen auf Garmin / c:geo",
-      "Garmin",
-      "Ersatzakkus",
       "Stifte + Papier",
       "Handy",
       "feste Schuhe",
-      "Leatherman",
       "Plastiktüten / Beutel",
       "? Kamera",
       "? Kurzes Seil + Karabiner + Bandschlinge",
-      "? Taschenlampe",
       "? Handschuhe",
-      "? Karte",
-      "? Taschentücher / Klopapier",
-      "? Sonnencreme",
       "? Fernglas",
-      "? Rollmaß",
       "? Draht / Kabelbinder",
       "? Regenjacke",
-      "? Geldbeutel",
-      "? Zeckenkarte",
       "? Magnet",
       "? Laserpointer"
     ],
-    "parents": ["Outdoor"],
+    "parents": ["Sport", "Outdoor"],
+    list: true
+  },
+  {
+    "name": "Squash",
+    "icon": "tennis",
+    "color": "danger",
+    "items": [
+        "Hallenschuhe",
+        "Schläger",
+        "Kontaktlinsen / alte Brille",
+        "? Schweißband"
+    ],
+    "parents": ["Sport"],
+    list: true
+  },
+  {
+    "name": "Klettern",
+    "icon": "climbing",
+    "color": "danger",
+    "items": [
+        "Kletterschuhe",
+        "Klettergurt",
+        "Karabiner",
+        "Seil",
+        "Flip-Flops"
+    ],
+    "parents": ["Sport"],
     list: true
   }
 ];
@@ -400,22 +458,23 @@ function render() {
     $("#list-buttons").html(html);
 
     // add event handlers
+    var esc = function (id) { return id.replace("+", "\\+"); };
     _.each(tags, function(tag) {
-        $("#btn-add-" + tag.name).click(function () {
+        $("#btn-add-" + esc(tag.name)).click(function () {
             addActiveTags(findTag(tag.name).tagAndParents());
             render();
         });
     });
 
     _.each(tags, function(tag) {
-        $("#btn-remove-" + tag.name).click(function () {
+        $("#btn-remove-" + esc(tag.name)).click(function () {
             removeActiveTags(findTag(tag.name));
             render();
         });
     });
 
     _.each(tags, function(tag) {
-        $("#btn-replace-" + tag.name).click(function () {
+        $("#btn-replace-" + esc(tag.name)).click(function () {
             setActiveTags(findTag(tag.name).tagAndParents());
             render();
         });
@@ -454,6 +513,7 @@ $(document).ready(function() {
 
     // reset button
     $("#reset").click(function () {
+        localStorage.setItem("activeTags", "[]");
         localStorage.setItem("completedItems", "[]");
         render();
     });
