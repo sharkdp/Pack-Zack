@@ -35,15 +35,20 @@ Tag.prototype.render = function() {
     return Mustache.render(tagTemplate, this);
 };
 
+function replaceQuestionMark(item) {
+    var html = item;
+    if  (item.substr(0, 2) === "? ") {
+        html = '<span style="color: #888;">' + _.drop(item, 2).join("") + '</span> <span style="color: #ccc" class="glyphicon glyphicon-question-sign"></span>';
+    }
+    return html;
+}
+
 Tag.prototype.itemsWithIds = function() {
     return _.map(this.items, function(item, id) {
-        var html = item;
-        if  (item.substr(0, 2) === "? ") {
-            html = '<span style="color: #888;">' + _.drop(item, 2).join("") + '</span> <span style="color: #ccc" class="glyphicon glyphicon-question-sign"></span>';
-        }
+        var html = replaceQuestionMark(item);
         return {id: id, name: item, html: html};
     });
-}
+};
 
 function findTag(name) {
     var tag = _.find(tags, function(tag) { return tag.name === name; });
@@ -202,6 +207,9 @@ function render() {
     // render lists
     var aTags = getActiveTags();
 
+    // get tags in correct order
+    aTags = _.intersection(tags, aTags);
+
     var lists = _(aTags)
             .invoke(Tag.prototype.render)
             .filter(function (h) { return h !== ""; })
@@ -231,14 +239,40 @@ $(document).ready(function() {
     Mustache.parse(tagTemplate);
 
     // buttons
+    $("#print").click(function () {
+        window.print();
+    });
+
+    $("#leftover").click(function () {
+        var html;
+
+        var uncheckedItems = $("input:checkbox:not(:checked)").map(function () {
+            return $(this).attr("data-item");
+        }).get();
+
+        if (uncheckedItems.length > 15) {
+            html = 'Viel zu viele unerledigte Dinge für eine <small>Morgen-Früh-Liste™</span>.';
+        }
+        else if (uncheckedItems.length === 0) {
+            if (getActiveTags().length === 0) {
+                html = 'Vielleicht legst du erst mal eine Packliste an.';
+            }
+            else {
+                html = 'Du hast doch schon alles erledigt.';
+            }
+        }
+        else {
+            html = _.map(uncheckedItems, replaceQuestionMark).join("<br />");
+        }
+
+        $("#leftoverContent").html(html);
+        $("#leftoverModal").modal('show');
+    });
+
     $("#reset").click(function () {
         localStorage.setItem("activeTags", "[]");
         localStorage.setItem("completedItems", "[]");
         render();
-    });
-
-    $("#print").click(function () {
-        window.print();
     });
 
     // Render the initial list

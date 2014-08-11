@@ -211,7 +211,7 @@ var dbTags = [
     "parents": ["Outdoor"]
   },
   {
-    "name": "Mehrtages-Tour",
+    "name": "Mehrtagestour",
     "icon": "location-arrow",
     "color": "danger",
     "items": [
@@ -288,7 +288,7 @@ var dbTags = [
   },
   {
     "name": "Wanderurlaub",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern", "Mehrtages-Tour"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Wandern", "Mehrtagestour"],
     "list": true
   },
   {
