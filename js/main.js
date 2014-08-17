@@ -58,30 +58,6 @@ function findTag(name) {
     return tag;
 }
 
-// Parse JSON into Tag objects
-_(dbTags).each(function(jsonTag) {
-    var tag = new Tag(jsonTag.name);
-    if (_.has(jsonTag, "icon")) {
-        tag.icon = jsonTag.icon;
-    }
-    if (_.has(jsonTag, "color")) {
-        tag.color = jsonTag.color;
-    }
-    if (_.has(jsonTag, "items")) {
-        tag.items = jsonTag.items;
-    }
-    if (_.has(jsonTag, "list")) {
-        tag.list = jsonTag.list;
-    }
-    if (_.has(jsonTag, "parents")) {
-        var parentTags = _.map(jsonTag.parents, function(tagName) {
-            return findTag(tagName);
-        });
-        tag.parents = parentTags;
-    }
-    tags.push(tag);
-});
-
 function setActiveTags(atags) {
     var tagNames = _.pluck(atags, "name");
     localStorage.setItem("activeTags", JSON.stringify(tagNames));
@@ -231,6 +207,37 @@ function render() {
 }
 
 $(document).ready(function() {
+    // Load and parse JSON into Tag objects
+    $.getJSON("json/packliste.json", function (dbTags) {
+        _(dbTags).each(function(jsonTag) {
+            var tag = new Tag(jsonTag.name);
+            if (_.has(jsonTag, "icon")) {
+                tag.icon = jsonTag.icon;
+            }
+            if (_.has(jsonTag, "color")) {
+                tag.color = jsonTag.color;
+            }
+            if (_.has(jsonTag, "items")) {
+                tag.items = jsonTag.items;
+            }
+            if (_.has(jsonTag, "list")) {
+                tag.list = jsonTag.list;
+            }
+            if (_.has(jsonTag, "parents")) {
+                var parentTags = _.map(jsonTag.parents, function(tagName) {
+                    return findTag(tagName);
+                });
+                tag.parents = parentTags;
+            }
+            tags.push(tag);
+        });
+
+        // Render the initial list
+        render();
+
+        loadItems();
+    });
+
     // render the tag-list
     buttonTemplate = $("#buttonTemplate").html();
 
@@ -274,9 +281,4 @@ $(document).ready(function() {
         localStorage.setItem("completedItems", "[]");
         render();
     });
-
-    // Render the initial list
-    render();
-
-    loadItems();
 });
