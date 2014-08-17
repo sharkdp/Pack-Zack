@@ -11,8 +11,9 @@ var dbTags = [
       "Socken",
       "Unterwäsche",
       "? Hausschuhe",
-      "? Funktionsshirts / Sportkleidung",
       "? Turnschuhe",
+      "? Sonstige Schuhe",
+      "? Funktionsshirts / Sportkleidung",
       "? Jogginghose",
       "? Regenjacke",
       "? Hemd, Anzug, Jacket, Krawatte"
@@ -27,7 +28,7 @@ var dbTags = [
       "Flip-Flops",
       "Sonnenbrille",
       "Badehose",
-      "? Sport-Hosen"
+      "? Sporthosen",
       "? Stirnband"
     ],
     "parents": ["Kleider"]
@@ -68,7 +69,7 @@ var dbTags = [
       "? Rasierschaum",
       "? Wattestäbchen",
       "? Ohropax",
-      "? Desinfektionsmittel",
+      "? Desinfektionsmittel"
     ]
   },
   {
@@ -121,7 +122,7 @@ var dbTags = [
       "Knoblauch",
       "Gemüsebrühe",
       "Kaffee / Espresso",
-      "Schnapps",
+      "Schnapps"
     ]
   },
   {
@@ -136,7 +137,7 @@ var dbTags = [
       "Spülmittel",
       "Geschirrtücher",
       "Lappen",
-      "Teekanne + Sieb",
+      "Teekanne + Sieb"
     ],
     "parents": ["Lebensmittel"]
   },
@@ -148,7 +149,7 @@ var dbTags = [
       "Stativ",
       "SD-Karten",
       "Fototasche",
-      "Reinigungsutensilien",
+      "Reinigungsutensilien"
     ],
   },
   {
@@ -170,14 +171,15 @@ var dbTags = [
     "color": "danger",
     "items": [
       "Helm",
-      "Fahrrad-Hosen",
-      "Fahrrad-Trikots",
-      "Fahrrad-Handschuhe (kurz+lang)",
-      "Fahrrad-Schuhe (+andere?)",
+      "Radhosen",
+      "Trikots",
+      "Fahrradhandschuhe (kurz+lang)",
+      "Radschuhe (+andere?)",
       "Trinkflasche",
-      "? Fahrrad-Jacke / Regenjacke",
+      "? Regenjacke / Fahrradjacke",
       "? Schloss",
-      "? ÖPNV Ausweis"
+      "? ÖPNV Ausweis",
+      "? Fahrradbrille"
     ],
     "parents": ["Outdoor"]
   },
@@ -193,7 +195,7 @@ var dbTags = [
       "Werkzeug (Multitool)",
       "Regenschutz (Hose, Schuhe)",
       "? Kettenöl",
-      "? Sattel-Tasche",
+      "? Satteltasche",
       "? Schutzbleche",
       "? Einweghandschuhe",
       "? Kabelbinder",
@@ -252,12 +254,12 @@ var dbTags = [
       "Sportkleidung",
       "Trinken",
       "Handy + Schlüssel + Geld",
-      "? Essen (Müsli-Riegel, Obst, ..)",
+      "? Essen (Müsliriegel, Obst, ..)",
       "? Duschen: Handtuch, Duschgel, frische Sachen",
       "? Kontaktlinsen / alte Brille",
       "? Mitgliedskarte etc.",
       "? Taschentücher",
-      "? Kopfschmerztablette",
+      "? Kopfschmerztablette"
     ]
   },
   {
@@ -280,8 +282,8 @@ var dbTags = [
       "Skistöcke",
       "Helm",
       "Ski",
-      "Ski-Handschuhe",
-      "Ski-Brille"
+      "Skihandschuhe",
+      "Skibrille"
     ],
     "parents": ["Winter", "Hygiene", "Sonstiges", "Outdoor"],
     "list": true
@@ -307,9 +309,9 @@ var dbTags = [
     "parents": ["Sommer", "Hygiene", "Sonstiges"],
     "items": [
       "Poster / Vortrag",
-      "Konferenz-Dokumente",
-      "Laptop (Headset, Maus)",
-      "Tablet + Ladegerät"
+      "Dokumente Konferenz",
+      "Laptop (Ladegerät, Headset, Maus)",
+      "Tablet (Ladegerät)"
     ],
     "list": true
   },
@@ -345,7 +347,7 @@ var dbTags = [
     "color": "warning",
     "items": [
         "Hallenschuhe",
-        "Schläger",
+        "Schläger"
     ],
     "parents": ["Sport"],
     "list": true
