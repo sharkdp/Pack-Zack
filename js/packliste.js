@@ -218,6 +218,25 @@ var dbTags = [
     "parents": ["Outdoor"]
   },
   {
+    "name": "Geocaching",
+    "icon": "compass",
+    "color": "danger",
+    "items": [
+      "Cachebeschreibungen auf Garmin / c:geo",
+      "Stifte + Papier",
+      "? Plastiktüten / Beutel",
+      "? Foto",
+      "? Kurzes Seil + Karabiner + Bandschlinge",
+      "? Handschuhe",
+      "? Fernglas",
+      "? Draht / Kabelbinder",
+      "? Regenjacke",
+      "? Magnet",
+      "? Laserpointer"
+    ],
+    "parents": ["Outdoor"],
+  },
+  {
     "name": "Mehrtagestour",
     "icon": "location-arrow",
     "color": "danger",
@@ -321,24 +340,9 @@ var dbTags = [
     "list": true
   },
   {
-    "name": "Geocaching",
+    "name": "Geocaching-Tour",
     "icon": "compass",
-    "color": "danger",
-    "items": [
-      "Cachebeschreibungen auf Garmin / c:geo",
-      "Stifte + Papier",
-      "Handy",
-      "? Plastiktüten / Beutel",
-      "? Foto",
-      "? Kurzes Seil + Karabiner + Bandschlinge",
-      "? Handschuhe",
-      "? Fernglas",
-      "? Draht / Kabelbinder",
-      "? Regenjacke",
-      "? Magnet",
-      "? Laserpointer"
-    ],
-    "parents": ["Sport", "Outdoor"],
+    "parents": ["Sport", "Geocaching"],
     "list": true
   },
   {
