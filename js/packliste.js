@@ -9,7 +9,7 @@ var dbTags = [
       "Pullis",
       "T-Shirts",
       "Socken",
-      "Shorts",
+      "Unterwäsche",
       "? Hausschuhe",
       "? Funktionsshirts / Sportkleidung",
       "? Turnschuhe",
@@ -28,6 +28,7 @@ var dbTags = [
       "Sonnenbrille",
       "Badehose",
       "? Sport-Hosen"
+      "? Stirnband"
     ],
     "parents": ["Kleider"]
   },
@@ -58,7 +59,7 @@ var dbTags = [
       "Haargel",
       "Taschentücher",
       "? Handtuch",
-      "? Kopfschmerztabletten",
+      "? Kopfschmerztabletten, Medikamente",
       "? Creme / Labello",
       "? Sonnencreme",
       "? Kontaktlinsen + Behälter + Flüssigkeit",
@@ -67,7 +68,6 @@ var dbTags = [
       "? Rasierschaum",
       "? Wattestäbchen",
       "? Ohropax",
-      "? Blasenpflaster",
       "? Desinfektionsmittel",
     ]
   },
@@ -75,7 +75,7 @@ var dbTags = [
     "name": "Sonstiges",
     "icon": "travel-agency",
     "items": [
-      "Geldbeutel (Geld, Ausweis, VISA, KV-Karte)",
+      "Geldbeutel (Geld, Ausweis, EC+VISA, KV-Karte)",
       "Handy",
       "Dokumente (Flug, Bahn, Hotel)",
       "Kopfhörer",
@@ -112,6 +112,7 @@ var dbTags = [
     "items": [
       "Kartoffeln",
       "Reis",
+      "Nudeln",
       "Zwiebeln",
       "Salz",
       "Pfeffer",
@@ -157,9 +158,10 @@ var dbTags = [
     "items": [
       "GPS + Halter + Ersatzakkus",
       "Karten und Tracks für GPS",
-      "Geocaches und POI",
+      "? Geocaches und POI",
       "? Taschenmesser",
-      "? Taschenlampe"
+      "? Taschenlampe",
+      "? Erste Hilfe Set"
     ]
   },
   {
@@ -168,13 +170,13 @@ var dbTags = [
     "color": "danger",
     "items": [
       "Helm",
-      "Schloss",
       "Fahrrad-Hosen",
       "Fahrrad-Trikots",
-      "Fahrrad-Jacke / Regenjacke",
-      "Fahrrad-Handschuhe",
+      "Fahrrad-Handschuhe (kurz+lang)",
       "Fahrrad-Schuhe (+andere?)",
       "Trinkflasche",
+      "? Fahrrad-Jacke / Regenjacke",
+      "? Schloss",
       "? ÖPNV Ausweis"
     ],
     "parents": ["Outdoor"]
@@ -185,15 +187,17 @@ var dbTags = [
     "color": "danger",
     "items": [
       "Licht",
-      "Sattel-Tasche",
-      "Werkzeug",
-      "Flickzeug",
-      "Ersatz-Schlauch",
-      "Schutzbleche",
       "Luftpumpe",
-      "Kettenöl",
+      "Flickset",
+      "Ersatzschlauch",
+      "Werkzeug (Multitool)",
       "Regenschutz (Hose, Schuhe)",
-      "Einweghandschuhe"
+      "? Kettenöl",
+      "? Sattel-Tasche",
+      "? Schutzbleche",
+      "? Einweghandschuhe",
+      "? Kabelbinder",
+      "? Kettenschloss"
     ],
     "parents": ["Fahrrad"]
   },
@@ -206,7 +210,8 @@ var dbTags = [
       "Wanderschuhe",
       "Wanderhose",
       "Kappe / Mütze",
-      "Flachmann"
+      "Flachmann",
+      "? Blasenpflaster"
     ],
     "parents": ["Outdoor"]
   },
@@ -246,7 +251,7 @@ var dbTags = [
     "items": [
       "Sportkleidung",
       "Trinken",
-      "Handy + Geld",
+      "Handy + Schlüssel + Geld",
       "? Essen (Müsli-Riegel, Obst, ..)",
       "? Duschen: Handtuch, Duschgel, frische Sachen",
       "? Kontaktlinsen / alte Brille",
@@ -283,7 +288,7 @@ var dbTags = [
   },
   {
     "name": "Fahrradurlaub",
-    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad+"],
+    "parents": ["Sommer", "Hygiene", "Sonstiges", "Fahrrad+", "Mehrtagestour"],
     "list": true
   },
   {
@@ -321,7 +326,7 @@ var dbTags = [
       "Cachebeschreibungen auf Garmin / c:geo",
       "Stifte + Papier",
       "Handy",
-      "Plastiktüten / Beutel",
+      "? Plastiktüten / Beutel",
       "? Foto",
       "? Kurzes Seil + Karabiner + Bandschlinge",
       "? Handschuhe",
