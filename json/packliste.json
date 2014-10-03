@@ -115,17 +115,24 @@
         "name": "Lebensmittel",
         "icon": "food",
         "items": [
+            "Nudeln",
             "Kartoffeln",
             "Reis",
-            "Nudeln",
+            "Mehl",
             "Zwiebeln",
             "Salz",
             "Pfeffer",
-            "Öl/Essig",
             "Gewürze",
-            "Knoblauch",
+            "Öl/Essig",
+            "Milch",
+            "Eier",
+            "Käse",
+            "Wurst",
+            "Marmelade, Nutella",
             "Gemüsebrühe",
-            "Kaffee / Espresso",
+            "Schokolade, Kekse",
+            "Kaffee, Tee",
+            "Getränke (Wasser, Saft, Bier)",
             "Schnapps"
         ]
     },
@@ -135,13 +142,14 @@
         "items": [
             "Tupperschüsseln",
             "Küchenmesser",
-            "Korkenzieher",
+            "Flaschenöffner, Korkenzieher",
             "Putzlappen",
             "Klopapier",
             "Spülmittel",
             "Geschirrtücher",
             "Lappen",
-            "Teekanne + Sieb"
+            "Teekanne + Sieb",
+            "? Bettwäsche"
         ],
         "parents": [
             "Lebensmittel"
@@ -278,7 +286,8 @@
             "? Werkzeug",
             "? Geschirrtücher",
             "? Campingkocher",
-            "? Geschirr + Besteck"
+            "? Geschirr + Besteck",
+            "? Grill, Kohle, Feuerzeug"
         ]
     },
     {
