@@ -93,6 +93,7 @@
             "? Reisepass",
             "? Zusätzlicher Rucksack",
             "? Mehrfachsteckdose",
+            "? Laptop (Ladegerät, Headset, Maus)",
             "? Kabel (USB, HDMI, LAN)",
             "? Adapter Ausland",
             "? Reiseführer",
@@ -389,8 +390,8 @@
         "items": [
             "Poster / Vortrag",
             "Dokumente Konferenz",
-            "Laptop (Ladegerät, Headset, Maus)",
-            "Tablet (Ladegerät)"
+            "Tablet (Ladegerät)",
+            "? Vortrag auf USB-Stick"
         ],
         "list": true
     },
