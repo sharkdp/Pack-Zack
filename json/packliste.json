@@ -92,9 +92,8 @@
             "Stifte + Papier",
             "? Reisepass",
             "? Zusätzlicher Rucksack",
-            "? Mehrfachsteckdose",
             "? Laptop (Ladegerät, Headset, Maus)",
-            "? Kabel (USB, HDMI, LAN)",
+            "? Kabel (Audio, USB, HDMI, LAN)",
             "? Adapter Ausland",
             "? Reiseführer",
             "? Regenschirm"
@@ -123,7 +122,7 @@
             "Zwiebeln",
             "Salz",
             "Pfeffer",
-            "Gewürze",
+            "Sonstige Gewürze",
             "Öl/Essig",
             "Milch",
             "Eier",
@@ -150,7 +149,10 @@
             "Geschirrtücher",
             "Lappen",
             "Teekanne + Sieb",
-            "? Bettwäsche"
+            "Kaffeemaschine, Filter",
+            "? Bettwäsche",
+            "? Mehrfachsteckdose, Verlängerungskabel",
+            "? Boxen + Kabel"
         ],
         "parents": [
             "Lebensmittel"
