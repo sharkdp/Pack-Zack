@@ -1,8 +1,7 @@
 /*jslint browser: true, nomen: true, white: true, vars: true, todo: true*/
 /*global $*/
 /*global _*/
-/*global Mustache*/
-/*global dbTags*/
+/*global Handlebars*/
 
 'use strict';
 
@@ -34,7 +33,7 @@ Tag.prototype.render = function() {
     if (this.items.length === 0) {
         return "";
     }
-    return Mustache.render(tagTemplate, this);
+    return tagTemplate(this);
 };
 
 function replaceQuestionMark(item) {
@@ -82,14 +81,13 @@ function removeActiveTags(atag) {
 function button(tag) {
     var active = _.contains(getActiveTags(), tag); // TODO: inefficient
     return { name: tag.name,
-        style: active ? 'danger' : 'primary',
-        color: tag.color,
+        style:    active ? 'danger' : 'primary',
         function: active ? 'remove' : 'add',
-        symbol: active ? 'minus' : 'plus',
-        notList: !tag.list,
-        active: active ? 'active' : '',
-        list: tag.list,
-        icon: tag.icon
+        symbol:   active ? 'minus' : 'plus',
+        active:   active,
+        icon:     tag.icon,
+        color:    tag.color,
+        list:     tag.list
     };
 }
 
@@ -153,10 +151,10 @@ function render() {
     var tagButtons = _.filter(buttons, function (b) { return !b.list; });
     var listButtons = _.filter(buttons, function (b) { return b.list; });
 
-    var html = Mustache.render(buttonTemplate, {buttons: tagButtons});
+    var html = buttonTemplate({buttons: tagButtons});
     $("#tag-buttons").html(html);
 
-    html = Mustache.render(buttonTemplate, {buttons: listButtons});
+    html = buttonTemplate({buttons: listButtons});
     $("#list-buttons").html(html);
 
     // add event handlers
@@ -240,12 +238,9 @@ $(document).ready(function() {
         loadItems();
     });
 
-    // render the tag-list
-    buttonTemplate = $("#buttonTemplate").html();
-
-    // Pre-parse tag template
-    tagTemplate = $("#tagTemplate").html();
-    Mustache.parse(tagTemplate);
+    // Compile the templates
+    buttonTemplate = Handlebars.compile($("#buttonTemplate").html());
+    tagTemplate = Handlebars.compile($("#tagTemplate").html());
 
     // buttons
     $("#print").click(function () {
