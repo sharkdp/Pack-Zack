@@ -1,8 +1,10 @@
-/*jslint browser: true*/
+/*jslint browser: true, nomen: true, white: true, vars: true, todo: true*/
 /*global $*/
 /*global _*/
 /*global Mustache*/
 /*global dbTags*/
+
+'use strict';
 
 var tagTemplate, buttonTemplate, tags = [], tagCnt = 1;
 
