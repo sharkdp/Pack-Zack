@@ -75,7 +75,7 @@ function addActiveTags(atags) {
 
 function removeActiveTags(atag) {
     var atags = getActiveTags();
-    setActiveTags(_.filter(atags, function(c) { return c !== atag; }));
+    setActiveTags(_.reject(atags, atag));
 }
 
 function button(tag) {
@@ -151,12 +151,11 @@ function loadCompletedItems() {
 function render() {
     // render tag buttons
     var buttons = _.map(tags, button);
-    var tagButtons = _.filter(buttons, function(b) { return !b.list; });
-    var listButtons = _.filter(buttons, function(b) { return b.list; });
-
-    $("#tag-buttons").html(buttonTemplate({buttons: tagButtons}));
+    var listButtons = _.filter(buttons, 'list');
+    var tagButtons = _.reject(buttons, 'list');
 
     $("#list-buttons").html(buttonTemplate({buttons: listButtons}));
+    $("#tag-buttons").html(buttonTemplate({buttons: tagButtons}));
 
     // add event handlers
     var esc = function(id) { return id.replace("+", "\\+"); };
@@ -189,7 +188,7 @@ function render() {
 
     var lists = _(aTags)
             .invoke(Tag.prototype.render)
-            .filter(function(h) { return h !== ""; })
+            .reject(_.isEmpty)
             .value();
     var n = lists.length;
     var n_left = Math.ceil(n / 2);
@@ -268,9 +267,7 @@ $(document).ready(function() {
                 tag.list = jsonTag.list;
             }
             if (_.has(jsonTag, "parents")) {
-                var parentTags = _.map(jsonTag.parents, function(tagName) {
-                    return findTag(tagName);
-                });
+                var parentTags = _.map(jsonTag.parents, findTag);
                 tag.parents = parentTags;
             }
             tags.push(tag);
@@ -279,11 +276,12 @@ $(document).ready(function() {
         // load predefined tags from URL
         if (getActiveTags().length === 0) {
             var hash = location.hash.replace('#', '');
-            _.map(hash.split(","), findTag).map(decodeURIComponent).map(function(tag) {
-                if (tag !== undefined) {
-                    addActiveTags(tag.tagAndParents());
-                }
-            });
+            if (_.isString(hash) && hash !== "") {
+                _(hash.split(","))
+                    .map(findTag)
+                    .filter(_.isObject)
+                    .map(addActiveTags);
+            }
         }
 
         render();
