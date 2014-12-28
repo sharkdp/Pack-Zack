@@ -7,7 +7,7 @@
 
 var tagTemplate, buttonTemplate, tags = [], tagCnt = 1;
 
-function Tag(name) {
+var Tag = function(name) {
     this.name = name;
     this.icon = undefined;
     this.color = "default";
@@ -75,7 +75,7 @@ function addActiveTags(atags) {
 
 function removeActiveTags(atag) {
     var atags = getActiveTags();
-    setActiveTags(_.filter(atags, function (c) { return c !== atag; }));
+    setActiveTags(_.filter(atags, function(c) { return c !== atag; }));
 }
 
 function button(tag) {
@@ -91,7 +91,10 @@ function button(tag) {
     };
 }
 
-function saveItems() {
+function saveCompletedItems() {
+    // Note: We could simply store the currently checked items. However,
+    // this would delete items which are not displayed on screen.
+
     // load old saved items
     var items = localStorage.getItem("completedItems");
     if (items === undefined) {
@@ -102,12 +105,12 @@ function saveItems() {
     }
 
     // add (newly) checked items
-    var checkedItems = $("input:checkbox:checked").map(function () {
+    var checkedItems = $("input:checkbox:checked").map(function() {
         return $(this).attr("data-item");
     }).get();
 
     // remove (newly?) unchecked items
-    var uncheckedItems = $("input:checkbox:not(:checked)").map(function () {
+    var uncheckedItems = $("input:checkbox:not(:checked)").map(function() {
         return $(this).attr("data-item");
     }).get();
     items = _.union(items, checkedItems);
@@ -115,7 +118,7 @@ function saveItems() {
     localStorage.setItem("completedItems", JSON.stringify(items));
 }
 
-function progress() {
+function renderProgress() {
     var checked = $("input:checkbox:checked").length;
     var all = $("input:checkbox").length;
     var percentage;
@@ -128,53 +131,51 @@ function progress() {
     $("#progress").css("width", percentage.toString() + "%");
 }
 
-function loadItems() {
+function loadCompletedItems() {
     var items = localStorage.getItem("completedItems");
     if (items === undefined) {
         return;
     }
     items = JSON.parse(items);
-    _.each(items, function (item) {
-        $(":checkbox[data-item='" + item + "']").each(function () {
+    _.each(items, function(item) {
+        $(":checkbox[data-item='" + item + "']").each(function() {
             $(this)
                 .prop("checked", true)
                 .parent().find("label").addClass("done");
         });
     });
 
-    progress();
+    renderProgress();
 }
 
 function render() {
     // render tag buttons
     var buttons = _.map(tags, button);
-    var tagButtons = _.filter(buttons, function (b) { return !b.list; });
-    var listButtons = _.filter(buttons, function (b) { return b.list; });
+    var tagButtons = _.filter(buttons, function(b) { return !b.list; });
+    var listButtons = _.filter(buttons, function(b) { return b.list; });
 
-    var html = buttonTemplate({buttons: tagButtons});
-    $("#tag-buttons").html(html);
+    $("#tag-buttons").html(buttonTemplate({buttons: tagButtons}));
 
-    html = buttonTemplate({buttons: listButtons});
-    $("#list-buttons").html(html);
+    $("#list-buttons").html(buttonTemplate({buttons: listButtons}));
 
     // add event handlers
-    var esc = function (id) { return id.replace("+", "\\+"); };
+    var esc = function(id) { return id.replace("+", "\\+"); };
     _.each(tags, function(tag) {
-        $("#btn-add-" + esc(tag.name)).click(function () {
+        $("#btn-add-" + esc(tag.name)).click(function() {
             addActiveTags(findTag(tag.name).tagAndParents());
             render();
         });
     });
 
     _.each(tags, function(tag) {
-        $("#btn-remove-" + esc(tag.name)).click(function () {
+        $("#btn-remove-" + esc(tag.name)).click(function() {
             removeActiveTags(findTag(tag.name));
             render();
         });
     });
 
     _.each(tags, function(tag) {
-        $("#btn-replace-" + esc(tag.name)).click(function () {
+        $("#btn-replace-" + esc(tag.name)).click(function() {
             setActiveTags(findTag(tag.name).tagAndParents());
             render();
         });
@@ -188,7 +189,7 @@ function render() {
 
     var lists = _(aTags)
             .invoke(Tag.prototype.render)
-            .filter(function (h) { return h !== ""; })
+            .filter(function(h) { return h !== ""; })
             .value();
     var n = lists.length;
     var n_left = Math.ceil(n / 2);
@@ -197,18 +198,59 @@ function render() {
     $("#lists-left").html(_.first(lists, n_left).join(""));
     $("#lists-right").html(_.last(lists, n_right).join(""));
 
-    $("input").change(function () {
+    $("input").change(function() {
         $(this).parent().find("label").toggleClass("done");
-        saveItems();
-        progress();
+        saveCompletedItems();
+        renderProgress();
     });
 
-    loadItems();
+    loadCompletedItems();
 }
 
 $(document).ready(function() {
-    // Load and parse JSON into Tag objects
-    $.getJSON("json/packliste.json", function (dbTags) {
+    // compile the templates
+    buttonTemplate = Handlebars.compile($("#buttonTemplate").html());
+    tagTemplate = Handlebars.compile($("#tagTemplate").html());
+
+    // register event handlers
+    $("#print").click(function() {
+        window.print();
+    });
+
+    $("#leftover").click(function() {
+        var html;
+
+        var uncheckedItems = $("input:checkbox:not(:checked)").map(function() {
+            return $(this).attr("data-item");
+        }).get();
+
+        if (uncheckedItems.length > 15) {
+            html = 'Viel zu viele unerledigte Dinge für eine <small>Morgen-Früh-Liste™</span>.';
+        }
+        else if (uncheckedItems.length === 0) {
+            if (getActiveTags().length === 0) {
+                html = 'Vielleicht legst du erst mal eine Packliste an.';
+            }
+            else {
+                html = 'Du hast doch schon alles erledigt.';
+            }
+        }
+        else {
+            html = _.map(uncheckedItems, replaceQuestionMark).join("<br />");
+        }
+
+        $("#leftoverContent").html(html);
+        $("#leftoverModal").modal('show');
+    });
+
+    $("#reset").click(function() {
+        localStorage.setItem("activeTags", "[]");
+        localStorage.setItem("completedItems", "[]");
+        render();
+    });
+
+    // load and parse JSON into Tag objects
+    $.getJSON("json/packliste.json", function(dbTags) {
         _(dbTags).each(function(jsonTag) {
             var tag = new Tag(jsonTag.name);
             if (_.has(jsonTag, "icon")) {
@@ -232,50 +274,6 @@ $(document).ready(function() {
             tags.push(tag);
         });
 
-        // Render the initial list
-        render();
-
-        loadItems();
-    });
-
-    // Compile the templates
-    buttonTemplate = Handlebars.compile($("#buttonTemplate").html());
-    tagTemplate = Handlebars.compile($("#tagTemplate").html());
-
-    // buttons
-    $("#print").click(function () {
-        window.print();
-    });
-
-    $("#leftover").click(function () {
-        var html;
-
-        var uncheckedItems = $("input:checkbox:not(:checked)").map(function () {
-            return $(this).attr("data-item");
-        }).get();
-
-        if (uncheckedItems.length > 15) {
-            html = 'Viel zu viele unerledigte Dinge für eine <small>Morgen-Früh-Liste™</span>.';
-        }
-        else if (uncheckedItems.length === 0) {
-            if (getActiveTags().length === 0) {
-                html = 'Vielleicht legst du erst mal eine Packliste an.';
-            }
-            else {
-                html = 'Du hast doch schon alles erledigt.';
-            }
-        }
-        else {
-            html = _.map(uncheckedItems, replaceQuestionMark).join("<br />");
-        }
-
-        $("#leftoverContent").html(html);
-        $("#leftoverModal").modal('show');
-    });
-
-    $("#reset").click(function () {
-        localStorage.setItem("activeTags", "[]");
-        localStorage.setItem("completedItems", "[]");
         render();
     });
 });
