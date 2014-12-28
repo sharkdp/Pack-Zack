@@ -5,7 +5,7 @@
 
 'use strict';
 
-var tagTemplate, buttonTemplate, tags = [], tagCnt = 1;
+var tagTemplate, buttonTemplate, tags = [];
 
 function Tag(name) {
     this.name = name;
@@ -14,8 +14,7 @@ function Tag(name) {
     this.list = false;
     this.items = [];
     this.parents = [];
-    this.tagId = tagCnt;
-    tagCnt += 1;
+    this.tagId = _.uniqueId();
 }
 
 Tag.prototype.tagAndParents = function() {
@@ -250,25 +249,13 @@ $(document).ready(function() {
         render();
     });
 
-    // load and parse JSON into Tag objects
+    // load JSON and convert into Tag objects
     $.getJSON("json/packliste.json", function(dbTags) {
         _(dbTags).each(function(jsonTag) {
             var tag = new Tag(jsonTag.name);
-            if (_.has(jsonTag, "icon")) {
-                tag.icon = jsonTag.icon;
-            }
-            if (_.has(jsonTag, "color")) {
-                tag.color = jsonTag.color;
-            }
-            if (_.has(jsonTag, "items")) {
-                tag.items = jsonTag.items;
-            }
-            if (_.has(jsonTag, "list")) {
-                tag.list = jsonTag.list;
-            }
+            tag = _.assign(tag, jsonTag);
             if (_.has(jsonTag, "parents")) {
-                var parentTags = _.map(jsonTag.parents, findTag);
-                tag.parents = parentTags;
+                tag.parents = _.map(jsonTag.parents, findTag);
             }
             tags.push(tag);
         });
