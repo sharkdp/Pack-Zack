@@ -307,23 +307,25 @@ $(document).ready(function() {
         extras.icon = "jewelry-store";
         tags.push(extras);
 
-        // activate predefined tags from URL
-        if (getActiveTags().length === 0) {
-            var hash = decodeURIComponent(location.hash.replace('#', ''));
-            if (_.isString(hash) && hash !== "") {
-                // the hash has the structure
-                // Tag1,Tag1,Tag3;Item1,Item2,Item3
-                // where Tag 1-3 are the active tags
-                // and Item 1-3 are additional items
+        // the hash has the structure:
+        // Tag1,Tag1,Tag3;Item1,Item2,Item3
+        // where Tag 1-3 are the active tags
+        // and Item 1-3 are additional items
+        var hash = decodeURIComponent(location.hash.replace('#', ''));
+        if (_.isString(hash) && hash !== "") {
+            var parts = hash.split(";");
 
-                var parts = hash.split(";");
-
+            if (getActiveTags().length === 0) {
                 _(parts[0].split(","))
                     .map(findTag)
                     .filter(_.isObject)
                     .map(addActiveTags);
 
-                if (parts.length > 1) {
+            }
+
+            var items = localStorage.getItem("extraItems");
+            if (parts.length > 1) {
+                if (_.isEmpty(items)) {
                     localStorage.setItem("extraItems", parts[1]);
                 }
             }
