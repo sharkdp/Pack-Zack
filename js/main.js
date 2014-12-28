@@ -7,7 +7,7 @@
 
 var tagTemplate, buttonTemplate, tags = [], tagCnt = 1;
 
-var Tag = function(name) {
+function Tag(name) {
     this.name = name;
     this.icon = undefined;
     this.color = "default";
@@ -205,6 +205,8 @@ function render() {
     });
 
     loadCompletedItems();
+
+    location.hash = _.pluck(aTags, "name").map(encodeURIComponent).join(",");
 }
 
 $(document).ready(function() {
@@ -273,6 +275,16 @@ $(document).ready(function() {
             }
             tags.push(tag);
         });
+
+        // load predefined tags from URL
+        if (getActiveTags().length === 0) {
+            var hash = location.hash.replace('#', '');
+            _.map(hash.split(","), findTag).map(decodeURIComponent).map(function(tag) {
+                if (tag !== undefined) {
+                    addActiveTags(tag.tagAndParents());
+                }
+            });
+        }
 
         render();
     });
