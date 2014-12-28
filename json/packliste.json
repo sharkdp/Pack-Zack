@@ -13,7 +13,7 @@
             "? Hausschuhe",
             "? Turnschuhe",
             "? Sonstige Schuhe",
-            "? Funktionsshirts / Sportkleidung",
+            "? Sportkleidung, Funktionsshirts",
             "? Jogginghose",
             "? Regenjacke",
             "? Hemd, Anzug, Jacket, Krawatte"
@@ -59,15 +59,15 @@
             "Duschgel, Shampoo",
             "Zahnbürste",
             "Zahnpasta",
-            "Rasierer + Kabel",
+            "Rasierer, Kabel",
             "Deo",
             "Haargel",
             "Taschentücher",
             "? Handtuch",
             "? Kopfschmerztabletten, Medikamente",
-            "? Creme / Labello",
+            "? Creme, Labello",
             "? Sonnencreme",
-            "? Kontaktlinsen + Behälter + Flüssigkeit",
+            "? Kontaktlinsen, Behälter, Flüssigkeit",
             "? Brillenetui",
             "? Nagelschere/-zwicker",
             "? Rasierschaum",
@@ -80,7 +80,7 @@
         "name": "Sonstiges",
         "icon": "travel-agency",
         "items": [
-            "Geldbeutel (Geld, Ausweis, EC+VISA, KV-Karte)",
+            "Geldbeutel (Geld, Ausweis, EC, VISA, KV-Karte)",
             "Handy",
             "Dokumente (Flug, Bahn, Hotel)",
             "Kopfhörer",
@@ -89,7 +89,7 @@
             "Bücher, Kindle",
             "Ladegeräte (Handy, Foto, Akku)",
             "Akkus, Batterien",
-            "Stifte + Papier",
+            "Stifte, Papier",
             "? Reisepass",
             "? Zusätzlicher Rucksack",
             "? Laptop (Ladegerät, Headset, Maus)",
@@ -107,7 +107,7 @@
             "Brettspiele",
             "Backgammon",
             "? Frisbee",
-            "? Fußball, Volleyball, ..",
+            "? Fußball, Volleyball",
             "? Kite"
         ]
     },
@@ -123,7 +123,7 @@
             "Salz",
             "Pfeffer",
             "Sonstige Gewürze",
-            "Öl/Essig",
+            "Öl, Essig",
             "Milch",
             "Eier",
             "Käse",
@@ -140,19 +140,18 @@
         "name": "Ferienwohnung",
         "icon": "roofing-contractor",
         "items": [
-            "Tupperschüsseln",
-            "Küchenmesser",
-            "Flaschenöffner, Korkenzieher",
-            "Putzlappen",
-            "Klopapier",
-            "Spülmittel",
-            "Geschirrtücher",
-            "Lappen",
-            "Teekanne + Sieb",
+            "Bettwäsche",
+            "Boxen, Audiokabel",
+            "Mehrfachsteckdose, Verlängerungskabel",
             "Kaffeemaschine, Filter",
-            "? Bettwäsche",
-            "? Mehrfachsteckdose, Verlängerungskabel",
-            "? Boxen + Kabel"
+            "Teekanne, Sieb",
+            "Flaschenöffner, Korkenzieher",
+            "Spülmittel",
+            "Putzlappen",
+            "Geschirrtücher",
+            "Klopapier",
+            "Küchenmesser",
+            "Tupperschüsseln"
         ],
         "parents": [
             "Lebensmittel"
@@ -174,7 +173,7 @@
         "icon": "pet-store",
         "color": "danger",
         "items": [
-            "GPS + Halter + Ersatzakkus",
+            "GPS, Halterung, Ersatzakkus",
             "Karten und Tracks für GPS",
             "? Geocaches und POI",
             "? Taschenmesser",
@@ -190,10 +189,10 @@
             "Helm",
             "Radhosen",
             "Trikots",
-            "Fahrradhandschuhe (kurz+lang)",
-            "Radschuhe (+andere?)",
+            "Fahrradhandschuhe (kurz und lang)",
+            "Radschuhe (+ andere?)",
             "Trinkflasche",
-            "? Regenjacke / Fahrradjacke",
+            "? Regenjacke, Fahrradjacke",
             "? Schloss",
             "? ÖPNV Ausweis",
             "? Fahrradbrille"
@@ -229,12 +228,12 @@
         "icon": "trail-walking",
         "color": "danger",
         "items": [
-            "Wanderstöcke",
             "Wanderschuhe",
             "Wanderhose",
-            "Kappe / Mütze",
-            "Flachmann",
-            "? Blasenpflaster"
+            "Wanderstöcke",
+            "Mütze / Kappe",
+            "? Blasenpflaster",
+            "? Flachmann"
         ],
         "parents": [
             "Outdoor"
@@ -245,14 +244,14 @@
         "icon": "compass",
         "color": "danger",
         "items": [
-            "Cachebeschreibungen auf Garmin / c:geo",
-            "Stifte + Papier",
+            "Cachebeschreibungen auf Garmin, Handy",
+            "Stifte, Papier",
             "? Plastiktüten / Beutel",
             "? Foto",
-            "? Kurzes Seil + Karabiner + Bandschlinge",
+            "? Kurzes Seil, Karabiner, Bandschlinge",
             "? Handschuhe",
             "? Fernglas",
-            "? Draht / Kabelbinder",
+            "? Draht, Kabelbinder",
             "? Regenjacke",
             "? Magnet",
             "? Laserpointer"
@@ -289,7 +288,7 @@
             "? Werkzeug",
             "? Geschirrtücher",
             "? Campingkocher",
-            "? Geschirr + Besteck",
+            "? Geschirr, Besteck",
             "? Grill, Kohle, Feuerzeug"
         ]
     },
@@ -300,11 +299,11 @@
         "items": [
             "Sportkleidung",
             "Trinken",
-            "Handy + Schlüssel + Geld",
+            "Handy, Schlüssel, Geld",
             "? Essen (Müsliriegel, Obst, ..)",
             "? Duschen: Handtuch, Duschgel, frische Sachen",
-            "? Kontaktlinsen / alte Brille",
-            "? Mitgliedskarte etc.",
+            "? Kontaktlinsen, alte Brille",
+            "? Mitgliedskarte",
             "? Taschentücher",
             "? Kopfschmerztablette"
         ]
