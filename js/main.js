@@ -7,8 +7,8 @@
 
 var tagTemplate, buttonTemplate, tags = [];
 
-function Tag(name) {
-    this.name = name;
+function Tag() {
+    this.name = "";
     this.icon = undefined;
     this.color = "default";
     this.list = false;
@@ -65,7 +65,14 @@ function setActiveTags(atags) {
 
 function getActiveTags() {
     var tagNames = JSON.parse(localStorage.getItem("activeTags"));
-    return _.map(tagNames, findTag);
+    var active = _.map(tagNames, findTag);
+
+    var extras = findTag("Extras");
+    if (extras.items.length > 0) {
+        active.push(extras);
+    }
+
+    return active;
 }
 
 function addActiveTags(atags) {
@@ -151,7 +158,7 @@ function render() {
     // render tag buttons
     var buttons = _.map(tags, button);
     var listButtons = _.filter(buttons, 'list');
-    var tagButtons = _.reject(buttons, 'list');
+    var tagButtons = _(buttons).reject('list').reject({name: 'Extras'}).value();
 
     $("#list-buttons").html(buttonTemplate({buttons: listButtons}));
     $("#tag-buttons").html(buttonTemplate({buttons: tagButtons}));
@@ -178,6 +185,19 @@ function render() {
             render();
         });
     });
+
+    // update user-defined list
+    var extras = findTag("Extras");
+    var extraItems = localStorage.getItem("extraItems");
+    if (!_.isString(extraItems) || extraItems === "") {
+        extras.items = [];
+    }
+    else {
+        extras.items = _(extraItems.split(","))
+                           .invoke(String.prototype.trim)
+                           .reject(_.isEmpty)
+                           .value();
+    }
 
     // render lists
     var aTags = getActiveTags();
@@ -217,6 +237,19 @@ $(document).ready(function() {
         window.print();
     });
 
+    $("#edit").click(function() {
+        var extraItems = localStorage.getItem("extraItems");
+        if (!_.isString(extraItems)) {
+            extraItems = "";
+        }
+        var res = window.prompt("Kommaseparierte Liste:", extraItems);
+        if (res) {
+            localStorage.setItem("extraItems", res);
+
+            render();
+        }
+    });
+
     $("#leftover").click(function() {
         var html;
 
@@ -246,21 +279,28 @@ $(document).ready(function() {
     $("#reset").click(function() {
         localStorage.setItem("activeTags", "[]");
         localStorage.setItem("completedItems", "[]");
+        localStorage.setItem("extraItems", "");
         render();
     });
 
     // load JSON and convert into Tag objects
     $.getJSON("json/packliste.json", function(dbTags) {
-        _(dbTags).each(function(jsonTag) {
-            var tag = new Tag(jsonTag.name);
-            tag = _.assign(tag, jsonTag);
-            if (_.has(jsonTag, "parents")) {
-                tag.parents = _.map(jsonTag.parents, findTag);
-            }
-            tags.push(tag);
+        tags = _.map(dbTags, function(jsonTag) {
+            return _.assign(new Tag(), jsonTag);
         });
 
-        // load predefined tags from URL
+        // resolve dependencies
+        _.each(tags, function(tag) {
+            tag.parents = _.map(tag.parents, findTag);
+        });
+
+        // add tag for user-defined items
+        var extras = new Tag();
+        extras.name = "Extras";
+        extras.icon = "jewelry-store";
+        tags.push(extras);
+
+        // activate predefined tags from URL
         if (getActiveTags().length === 0) {
             var hash = location.hash.replace('#', '');
             if (_.isString(hash) && hash !== "") {
