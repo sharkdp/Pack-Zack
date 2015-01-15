@@ -332,11 +332,12 @@
         "color": "danger",
         "icon": "skiing",
         "items": [
+            "Ski",
+            "Skischuhe",
+            "Skistöcke",
             "Skihose",
             "Skisocken",
-            "Skistöcke",
             "Skihelm",
-            "Ski",
             "Skihandschuhe",
             "Skibrille"
         ],
