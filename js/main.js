@@ -2,6 +2,7 @@
 /*global $*/
 /*global _*/
 /*global Handlebars*/
+/*global dbTags*/
 
 'use strict';
 
@@ -290,47 +291,44 @@ $(document).ready(function() {
         render();
     });
 
-    // load JSON and convert into Tag objects
-    $.getJSON("json/packliste.json", function(dbTags) {
-        tags = _.map(dbTags, function(jsonTag) {
-            return _.assign(new Tag(), jsonTag);
-        });
+    tags = _.map(dbTags, function(jsonTag) {
+        return _.assign(new Tag(), jsonTag);
+    });
 
-        // resolve dependencies
-        _.each(tags, function(tag) {
-            tag.parents = _.map(tag.parents, findTag);
-        });
+    // resolve dependencies
+    _.each(tags, function(tag) {
+        tag.parents = _.map(tag.parents, findTag);
+    });
 
-        // add tag for user-defined items
-        var extras = new Tag();
-        extras.name = "Extras";
-        extras.icon = "jewelry-store";
-        tags.push(extras);
+    // add tag for user-defined items
+    var extras = new Tag();
+    extras.name = "Extras";
+    extras.icon = "jewelry-store";
+    tags.push(extras);
 
-        // the hash has the structure:
-        // Tag1,Tag1,Tag3;Item1,Item2,Item3
-        // where Tag 1-3 are the active tags
-        // and Item 1-3 are additional items
-        var hash = decodeURIComponent(location.hash.replace('#', ''));
-        if (_.isString(hash) && hash !== "") {
-            var parts = hash.split(";");
+    // the hash has the structure:
+    // Tag1,Tag1,Tag3;Item1,Item2,Item3
+    // where Tag 1-3 are the active tags
+    // and Item 1-3 are additional items
+    var hash = decodeURIComponent(location.hash.replace('#', ''));
+    if (_.isString(hash) && hash !== "") {
+        var parts = hash.split(";");
 
-            if (getActiveTags().length === 0) {
-                _(parts[0].split(","))
-                    .map(findTag)
-                    .filter(_.isObject)
-                    .map(addActiveTags);
+        if (getActiveTags().length === 0) {
+            _(parts[0].split(","))
+                .map(findTag)
+                .filter(_.isObject)
+                .map(addActiveTags);
 
-            }
-
-            var items = localStorage.getItem("extraItems");
-            if (parts.length > 1) {
-                if (_.isEmpty(items)) {
-                    localStorage.setItem("extraItems", parts[1]);
-                }
-            }
         }
 
-        render();
-    });
+        var items = localStorage.getItem("extraItems");
+        if (parts.length > 1) {
+            if (_.isEmpty(items)) {
+                localStorage.setItem("extraItems", parts[1]);
+            }
+        }
+    }
+
+    render();
 });

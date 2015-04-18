@@ -1,4 +1,4 @@
-[
+var dbTags = [
     {
         "name": "Kleider",
         "icon": "laundry",
