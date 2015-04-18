@@ -29,7 +29,8 @@
             "Sonnenbrille",
             "Badehose",
             "? Sporthosen",
-            "? Stirnband"
+            "? Strand- / Badetuch",
+            "? Schwimmbrille"
         ],
         "parents": [
             "Kleider"
@@ -176,7 +177,7 @@
         "items": [
             "GPS, Halterung, Ersatzakkus",
             "Karten und Tracks für GPS",
-            "? Geocaches und POI",
+            "? POIs und Geocaches",
             "? Taschenmesser",
             "? Taschenlampe",
             "? Erste Hilfe Set"
@@ -232,7 +233,7 @@
             "Wanderschuhe",
             "Wanderhose",
             "Wanderstöcke",
-            "Mütze / Kappe",
+            "Mütze / Kappe / Tuch",
             "Wanderführer, Karte",
             "? Blasenpflaster",
             "? Trinkflasche",
@@ -269,7 +270,8 @@
         "color": "danger",
         "items": [
             "(Hütten-)Schlafsack",
-            "Packsäcke / Tüten",
+            "Packsäcke / Beutel / Tüten",
+            "? Regenschutz Rucksack",
             "? Waschgel"
         ],
         "parents": [
