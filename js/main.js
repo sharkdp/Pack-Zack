@@ -291,7 +291,12 @@ $(document).ready(function() {
     });
 
     // load JSON and convert into Tag objects
-    $.getJSON("json/packliste.json", function(dbTags) {
+    var suffix = window.location.search.substring(1);
+    var packliste = "json/packliste.json";
+    if (suffix !== "") {
+        packliste = "json/packliste-" + suffix + ".json";
+    }
+    $.getJSON(packliste, function(dbTags) {
         tags = _.map(dbTags, function(jsonTag) {
             return _.assign(new Tag(), jsonTag);
         });
