@@ -299,6 +299,17 @@
         ]
     },
     {
+        "name": "Mietwagen",
+        "icon": "car-rental",
+        "items": [
+            "Dokumente / Voucher",
+            "Navi + Halterung",
+            "Klinken-Kabel für Musik",
+            "? Ladegeräte für Zigarettenanzünder",
+            "? Kartenmaterial"
+        ]
+    },
+    {
         "name": "Sport",
         "icon": "tennis",
         "color": "warning",
