@@ -163,11 +163,13 @@
         "name": "Fotozubehör",
         "icon": "point-of-interest",
         "items": [
-            "Ladegerät",
+            "Ladegerät, Ersatzakku",
+            "Objektive, Filter",
             "Stativ",
             "SD-Karten",
             "Fototasche",
-            "Reinigungsutensilien"
+            "Reinigungsutensilien",
+            "IR-Auslöser"
         ]
     },
     {
