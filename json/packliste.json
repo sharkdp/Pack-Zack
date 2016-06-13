@@ -66,6 +66,7 @@
             "Taschentücher",
             "? Handtuch",
             "? Kopfschmerztabletten, Medikamente",
+            "? Mückenschutzmittel",
             "? Creme, Labello",
             "? Sonnencreme",
             "? Kontaktlinsen, Behälter, Flüssigkeit",
@@ -98,7 +99,8 @@
             "? Kabel (Audio, USB, HDMI, LAN)",
             "? Adapter Ausland",
             "? Reiseführer",
-            "? Regenschirm"
+            "? Regenschirm",
+            "? Kissen für Busfahrten, Flüge"
         ]
     },
     {
@@ -181,7 +183,7 @@
             "Karten und Tracks für GPS",
             "? POIs und Geocaches",
             "? Taschenmesser",
-            "? Taschenlampe",
+            "? Taschenlampe, Stirnlampe",
             "? Erste Hilfe Set"
         ]
     },
