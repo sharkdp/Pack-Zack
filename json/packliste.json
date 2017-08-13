@@ -10,6 +10,7 @@
             "T-Shirts",
             "Socken",
             "Unterwäsche",
+            "? Gürtel",
             "? Hausschuhe",
             "? Turnschuhe",
             "? Sonstige Schuhe",
@@ -83,7 +84,7 @@
         "name": "Sonstiges",
         "icon": "travel-agency",
         "items": [
-            "Geldbeutel (Geld, Ausweis, EC, VISA, KV-Karte)",
+            "Geldbeutel (Geld, Ausweis, Führerschein, EC, VISA, KV-Karte)",
             "Handy",
             "Dokumente (Flug, Bahn, Hotel, Visum, ESTA)",
             "Kopfhörer",
