@@ -154,6 +154,10 @@ function loadCompletedItems() {
     renderProgress();
 }
 
+const escapeHtml = (unsafe) => {
+    return unsafe.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+}
+
 function render() {
     // render tag buttons
     var buttons = _.map(tags, button);
@@ -194,7 +198,7 @@ function render() {
         extraItems = "";
     }
     else {
-        extras.items = _(extraItems.split(","))
+        extras.items = _(escapeHtml(extraItems).split(","))
                            .invoke(String.prototype.trim)
                            .reject(_.isEmpty)
                            .value();
